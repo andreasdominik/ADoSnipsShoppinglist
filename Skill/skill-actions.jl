@@ -11,14 +11,14 @@
 #   as Symbols (Julia-style)
 #
 """
-function templateAction(topic, payload)
+function addItemAction(topic, payload)
 
-    Dummyaction for the template.
+    add an Item to the shopping list.
 """
-function templateAction(topic, payload)
+function addItemAction(topic, payload)
 
     # log:
-    println("[ADoSnipsTemplate]: action templateAction() started.")
+    println("[ADoSnipsShoppinglist]: action templateAction() started.")
 
     # get my name from config.ini:
     #
