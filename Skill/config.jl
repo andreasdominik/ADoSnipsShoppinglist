@@ -21,11 +21,16 @@ Snips.setModule(@__MODULE__)
 # Slots:
 # Name of slots to be extracted from intents:
 #
-const SLOT_WORD = "a_word"
+const SLOT_ITEM = "Item"
+const SLOT_AMOUNT = "Amount"
+const SLOT_UNIT = "Unit"
 
 # name of entry in config.ini:
 #
-const INI_MY_NAME = "my_name"
+const INI_DIR = "directory"             # dir of shoppinglist file
+const INI_FILE = "shoppinglist.json"    # name of shoppinglist file
+const INI_TMP = "/tmp"
+const INI_PRINT_CMD = "print_cmd"
 
 #
 # link between actions and intents:
