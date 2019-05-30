@@ -13,33 +13,39 @@
 """
 function addItemAction(topic, payload)
 
-    add an Item to the shopping list.
+    Add an Item to the shopping list.
+    Amount, unit and Item is stired if only ONE Item is in the
+    intent. If more (>1 slots of type "Item"), only the Items
+    are added w/o amountand unit.
 """
 function addItemAction(topic, payload)
 
     # log:
-    println("[ADoSnipsShoppinglist]: action templateAction() started.")
+    println("[ADoSnipsShoppinglist]: action addItemAction() started.")
 
-    # get my name from config.ini:
+    # get the item(s) to add from slot:
     #
-    myName = Snips.getConfig(INI_MY_NAME)
-    if myName == nothing
-        Snips.publishEndSession(TEXTS[:noname])
-        return false
-    end
+    items = Snips.extractSlotValue(payload, SLOT_ITEM, multiple = true)
 
-    # get the word to repeat from slot:
-    #
-    word = Snips.extractSlotValue(payload, SLOT_WORD)
-    if word == nothing
+    if items == nothing     # no Item found!
         Snips.publishEndSession(TEXTS[:dunno])
         return true
+    else if items isa AbstractString    # only one item found!
+        unit = Snips.extractSlotValue(payload, SLOT_UNIT, multiple = false)
+        amount = Snips.extractSlotValue(payload, SLOT_AMOUNT, multiple = false)
+
+        if (unit != nothing) && (amount != nothing)
+            Snips.publishEndSession("$(TEXETS[:i_add] $amount $unit $items)"
+            addOneItem(amount, unit, items)
+        else
+            Snips.publishEndSession("$(TEXETS[:i_add] $items)"
+            addOneItem(items)
+        end
+        return true
+    else                      # > 1 items found!
+        Snips.publishEndSession("$(TEXETS[:i_add]) $(join(items, ", "))")
+        addItems(items)
     end
 
-    # say who you are:
-    #
-    Snips.publishSay(TEXTS[:bravo])
-    Snips.publishEndSession("""$(TEXTS[:iam]) $myName.
-                            $(TEXTS[:isay]) $word""")
     return true
 end
