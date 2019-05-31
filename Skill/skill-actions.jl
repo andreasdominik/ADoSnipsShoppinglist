@@ -25,27 +25,48 @@ function addItemAction(topic, payload)
 
     # get the item(s) to add from slot:
     #
-    items = Snips.extractSlotValue(payload, SLOT_ITEM, multiple = true)
+    items = Snips.parseSlots(payload)
 
-    if items == nothing     # no Item found!
+    if (items == nothing) || (length(items) < 1)     # no Item found!
         Snips.publishEndSession(TEXTS[:dunno])
         return true
-    else if items isa AbstractString    # only one item found!
-        unit = Snips.extractSlotValue(payload, SLOT_UNIT, multiple = false)
-        amount = Snips.extractSlotValue(payload, SLOT_AMOUNT, multiple = false)
-
-        if (unit != nothing) && (amount != nothing)
-            Snips.publishEndSession("$(TEXETS[:i_add] $amount $unit $items)"
-            addOneItem(amount, unit, items)
-        else
-            Snips.publishEndSession("$(TEXETS[:i_add] $items)"
-            addOneItem(items)
+    else
+        for item in items
+            if isInList(item)
+                say("$(item[:item]) $(TESTS[:alredy_there])")
+            else
+                say("$(TESTS[:i_add]): $(itemAsString(item))")
+                addItemToList(item)
+            end
         end
-        return true
-    else                      # > 1 items found!
-        Snips.publishEndSession("$(TEXETS[:i_add]) $(join(items, ", "))")
-        addItems(items)
+        Snips.publishEndSession("")
     end
 
     return true
+end
+
+
+function parseSlots(payload)
+
+    items = Dict[]
+
+    # iterate all slots and populate items step by step:
+    #
+    if haskey(payload, :slots)
+        item = Dict()
+        for s in payload[:slots]
+
+            if s[:slotName] == "Amount"
+                item[:quantity] = s[:value][:value]
+            elseif s[:slotName] == "Unit"
+                item[:unit] = s[:value][:value]
+            elseif s[:slotName] == "Item"
+                item[:item] = s[:value][:value]
+
+                push!(items, deepcopy(item))
+                item = Dict()
+            end
+        end
+    end
+    return items
 end

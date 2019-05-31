@@ -14,7 +14,7 @@ include("$FRAMEWORK_DIR/SnipsHermesQnD/src/SnipsHermesQnD.jl")
 import .SnipsHermesQnD
 Snips = SnipsHermesQnD
 
-
+Snips.setAppDir("$APP_DIR")
 Snips.readConfig("$APP_DIR")
 Snips.setLanguage(Snips.getConfig(:language))
 

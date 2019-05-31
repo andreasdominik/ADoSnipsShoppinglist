@@ -22,15 +22,18 @@ Snips.setModule(@__MODULE__)
 # Name of slots to be extracted from intents:
 #
 const SLOT_ITEM = "Item"
-const SLOT_AMOUNT = "Amount"
+const SLOT_QUANTITY = "Quantity"
 const SLOT_UNIT = "Unit"
 
 # name of entry in config.ini:
 #
 const INI_DIR = "directory"             # dir of shoppinglist file
-const INI_FILE = "shoppinglist.json"    # name of shoppinglist file
-const INI_TMP = "/tmp"
+const INI_FILE = "shoppinglist"         # name of shoppinglist file
+const INI_TMP = "tmp_dir"
 const INI_PRINT_CMD = "print_cmd"
+
+const SLIST_DIR = "$(Snips.getAppDir())/$(Snips.getConfig(INI_DIR))"
+const SLIST = "$slistDir/$(Snips.getConfig(INI_FILE))"
 
 #
 # link between actions and intents:
