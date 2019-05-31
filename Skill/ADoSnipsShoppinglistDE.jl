@@ -6,6 +6,8 @@
 #
 module ADoSnipsShoppinglistDE
 
+import JSON
+
 const MODULE_DIR = @__DIR__
 const APP_DIR = replace(MODULE_DIR, r"/[^/]*/?$"=>"")
 const SKILLS_DIR = replace(APP_DIR, r"/[^/]*/?$"=>"")

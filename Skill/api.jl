@@ -6,6 +6,9 @@
 function addItemToList(item)
 
     slist = readSList()
+    if length(slist) == 0
+        say(TEXTS[:new_list])
+    end
     push!(slist, Dict(:item => item, :amount => amount, :unit => unit))
     saveSList(slist)
 end
@@ -43,5 +46,18 @@ function makePlural(s)
         return plurals[s]
     else
         return s
+    end
+end
+
+function readSList()
+
+    slist = tryParseJSONfile(SLIST, quiet = true)
+    return slist
+end
+
+function saveSList(slist)
+
+    open(SLIST, "w") do f
+        JSON.print(f, slist)
     end
 end
