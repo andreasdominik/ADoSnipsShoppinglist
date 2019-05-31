@@ -1,0 +1,90 @@
+
+{
+  "sessionId": "session1234567890",
+  "siteId": "default",
+  "input": "bitte schreibe zwei kisten bier und eins kg mehl auf den einkaufszettel",
+  "intent": {
+    "intentName": "andreasdominik:shoppinglistAddItem",
+    "confidenceScore": 0.9516558
+  },
+  "slots": [
+    {
+      "rawValue": "zwei",
+      "value": {
+        "kind": "Number",
+        "value": 2
+      },
+      "range": {
+        "start": 15,
+        "end": 19
+      },
+      "entity": "snips/number",
+      "slotName": "Quantity"
+    },
+    {
+      "rawValue": "kisten",
+      "value": {
+        "kind": "Custom",
+        "value": "Kasten"
+      },
+      "range": {
+        "start": 20,
+        "end": 26
+      },
+      "entity": "ado/unit_type",
+      "slotName": "Unit"
+    },
+    {
+      "rawValue": "bier",
+      "value": {
+        "kind": "Custom",
+        "value": "Bier"
+      },
+      "range": {
+        "start": 27,
+        "end": 31
+      },
+      "entity": "ado/anything",
+      "slotName": "Item"
+    },
+    {
+      "rawValue": "eins",
+      "value": {
+        "kind": "Number",
+        "value": 1
+      },
+      "range": {
+        "start": 36,
+        "end": 40
+      },
+      "entity": "snips/number",
+      "slotName": "Quantity"
+    },
+    {
+      "rawValue": "kg",
+      "value": {
+        "kind": "Custom",
+        "value": "Kilogramm"
+      },
+      "range": {
+        "start": 41,
+        "end": 43
+      },
+      "entity": "ado/unit_type",
+      "slotName": "Unit"
+    },
+    {
+      "rawValue": "mehl",
+      "value": {
+        "kind": "Custom",
+        "value": "Mehl"
+      },
+      "range": {
+        "start": 44,
+        "end": 48
+      },
+      "entity": "ado/anything",
+      "slotName": "Item"
+    }
+  ]
+}
