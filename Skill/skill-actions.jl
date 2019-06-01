@@ -25,17 +25,18 @@ function addItemAction(topic, payload)
 
     # get the item(s) to add from slot:
     #
-    items = Snips.parseSlots(payload)
+    items = parseSlots(payload)
 
-    if (items == nothing) || (length(items) < 1)     # no Item found!
+    if (items == nothing) || (length(items) == 0)     # no Item found!
         Snips.publishEndSession(TEXTS[:dunno])
         return true
     else
         for item in items
+            # println("Item: $(item[:item])")
             if isInList(item)
-                say("$(item[:item]) $(TESTS[:alredy_there])")
+                Snips.publishSay("$(item[:item]) $(TEXTS[:already_there])")
             else
-                say("$(TESTS[:i_add]): $(itemAsString(item))")
+                Snips.publishSay("$(TESTS[:i_add]): $(itemAsString(item))")
                 addItemToList(item)
             end
         end
@@ -56,7 +57,7 @@ function parseSlots(payload)
         item = Dict()
         for s in payload[:slots]
 
-            if s[:slotName] == "Amount"
+            if s[:slotName] == "Quantity"
                 item[:quantity] = s[:value][:value]
             elseif s[:slotName] == "Unit"
                 item[:unit] = s[:value][:value]

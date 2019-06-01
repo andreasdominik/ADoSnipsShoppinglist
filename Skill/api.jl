@@ -6,23 +6,38 @@
 function addItemToList(item)
 
     slist = readSList()
+
     if length(slist) == 0
-        say(TEXTS[:new_list])
+        Snips.publishSay(TEXTS[:new_list])
     end
-    push!(slist, Dict(:item => item, :amount => amount, :unit => unit))
+    push!(slist, item)
     saveSList(slist)
 end
 
 
+function isInList(item)
 
-function itemToString(item)
+    slist = readSList()
+    alreadyThere = false
 
-    strItem = item[:item]
+    for i in slist
+        if uppercase(i[:item]) == uppercase(item[:item])
+            alreadyThere = true
+        end
+    end
+    return alreadyThere
+end
+
+
+function itemAsString(item)
+
+    strItem = "$(item[:item])"
     if haskey(item, :unit)
         if haskey(item, :quantity) && item[:quantity] > 1
-            item[:unit] = makePlural(item[:unit])
+            strItem = "$(makePlural(item[:unit])) $strItem"
+        else
+           strItem = "$(item[:unit]) $strItem"
         end
-        strItem = "$(item[:unit]) $strItem"
     end
     if haskey(item, :quantity)
         strItem = "$(item[:quantity]) $strItem"
@@ -51,13 +66,16 @@ end
 
 function readSList()
 
-    slist = tryParseJSONfile(SLIST, quiet = true)
+    slist = Snips.tryParseJSONfile(SLIST, quiet = true)
+    if length(slist) == 0
+        slist = Any[]
+    end
     return slist
 end
 
 function saveSList(slist)
 
     open(SLIST, "w") do f
-        JSON.print(f, slist)
+        JSON.print(f, slist, 2)
     end
 end

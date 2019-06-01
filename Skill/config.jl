@@ -33,7 +33,7 @@ const INI_TMP = "tmp_dir"
 const INI_PRINT_CMD = "print_cmd"
 
 const SLIST_DIR = "$(Snips.getAppDir())/$(Snips.getConfig(INI_DIR))"
-const SLIST = "$slistDir/$(Snips.getConfig(INI_FILE))"
+const SLIST = "$SLIST_DIR/$(Snips.getConfig(INI_FILE))"
 
 #
 # link between actions and intents:
@@ -46,12 +46,12 @@ const SLIST = "$slistDir/$(Snips.getConfig(INI_FILE))"
 # Language-dependent settings:
 #
 if LANG == "de"
-    Snips.registerIntentAction("pleaseRepeatDE", templateAction)
+    Snips.registerIntentAction("shoppinglistAddItem", addItemAction)
     TEXTS = TEXTS_DE
 elseif LANG == "en"
-    Snips.registerIntentAction("pleaseRepeatEN", templateAction)
+    Snips.registerIntentAction("shoppinglistAddItem", addItemAction)
     TEXTS = TEXTS_EN
 else
-    Snips.registerIntentAction("pleaseRepeatEN", templateAction)
+    Snips.registerIntentAction("shoppinglistAddItem", addItemAction)
     TEXTS = TEXTS_EN
 end

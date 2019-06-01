@@ -9,5 +9,5 @@ TEXTS_EN = Dict(
 :dunno => "I did not catch what you want me to do!",
 :new_list => "I create a new shopping list.",
 :i_add => "I add to the shopping list: ",
-:alredy_there => "is already on the list."
+:already_there => "is already on the list."
 )
