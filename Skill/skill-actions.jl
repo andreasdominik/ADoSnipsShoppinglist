@@ -36,7 +36,7 @@ function addItemAction(topic, payload)
             if isInList(item)
                 Snips.publishSay("$(item[:item]) $(TEXTS[:already_there])")
             else
-                Snips.publishSay("$(TESTS[:i_add]): $(itemAsString(item))")
+                Snips.publishSay("$(TEXTS[:i_add]): $(itemAsString(item))")
                 addItemToList(item)
             end
         end
@@ -70,4 +70,36 @@ function parseSlots(payload)
         end
     end
     return items
+end
+
+
+
+"""
+    checkItemAction(topic, payload)
+
+Check, if an item is already on the list, and read the full entry.
+"""
+function checkItemAction(topic, payload)
+
+    # log:
+    println("[ADoSnipsShoppinglist]: action checkItemAction() started.")
+
+    items = Snips.extractSlotValue(payload, "Item", multiple = true)
+
+    if (items == nothing) || (length(items) == 0)     # no Item found!
+        Snips.publishEndSession(TEXTS[:dunno])
+        return true
+    else
+        for itemItem in items
+            # println("Item: $itemItem)")
+            i = getItemFromList(itemItem)
+            if length(i) > 0
+                Snips.publishSay("$(itemAsString(i)) $(TEXTS[:already_there])")
+            else
+                Snips.publishSay("$itemItem $(TEXTS[:not_there])")
+            end
+        end
+    end
+    Snips.publishEndSession("")
+    return true
 end

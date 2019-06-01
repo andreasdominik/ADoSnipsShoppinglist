@@ -47,11 +47,14 @@ const SLIST = "$SLIST_DIR/$(Snips.getConfig(INI_FILE))"
 #
 if LANG == "de"
     Snips.registerIntentAction("shoppinglistAddItem", addItemAction)
+    Snips.registerIntentAction("shoppinglistCheck", checkItemAction)
     TEXTS = TEXTS_DE
 elseif LANG == "en"
     Snips.registerIntentAction("shoppinglistAddItem", addItemAction)
+    Snips.registerIntentAction("shoppinglistCheck", checkItemAction)
     TEXTS = TEXTS_EN
 else
     Snips.registerIntentAction("shoppinglistAddItem", addItemAction)
+    Snips.registerIntentAction("shoppinglistCheck", checkItemAction)
     TEXTS = TEXTS_EN
 end

@@ -1,0 +1,38 @@
+
+{
+  "sessionId": "session1234567890",
+  "siteId": "default",
+  "input": "stehen käse und bier auf dem einkaufszettel",
+  "intent": {
+    "intentName": "andreasdominik:shoppinglistCheck",
+    "confidenceScore": 0.8516938
+  },
+  "slots": [
+    {
+      "rawValue": "käse",
+      "value": {
+        "kind": "Custom",
+        "value": "Käse"
+      },
+      "range": {
+        "start": 7,
+        "end": 11
+      },
+      "entity": "Kaufbares",
+      "slotName": "Item"
+    },
+    {
+      "rawValue": "bier",
+      "value": {
+        "kind": "Custom",
+        "value": "Bier"
+      },
+      "range": {
+        "start": 16,
+        "end": 20
+      },
+      "entity": "Kaufbares",
+      "slotName": "Item"
+    }
+  ]
+}

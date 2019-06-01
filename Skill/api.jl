@@ -19,6 +19,7 @@ function isInList(item)
 
     slist = readSList()
     alreadyThere = false
+    # println(slist)
 
     for i in slist
         if uppercase(i[:item]) == uppercase(item[:item])
@@ -78,4 +79,22 @@ function saveSList(slist)
     open(SLIST, "w") do f
         JSON.print(f, slist, 2)
     end
+end
+
+
+"""
+item is ONLY the name of the item! NOT the Dict
+"""
+function getItemFromList(itemItem)
+
+    fromList = Dict()
+    slist = Snips.tryParseJSONfile(SLIST, quiet = true)
+    if length(slist) > 0
+        for i in slist
+            if uppercase(i[:item]) == uppercase(itemItem)
+                fromList = deepcopy(i)
+            end
+        end
+    end
+    return fromList
 end
