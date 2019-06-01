@@ -3,7 +3,9 @@ TEXTS_DE = Dict(
 :new_list => "Ich lege einen neue Einkaufszettel an.",
 :i_add => "Ich schreibe auf den Einkaufszettel: ",
 :already_there => "steht bereits auf dem Einkaufszettel.",
-:not_there => "steht noch nicht auf dem Einkaufszettel."
+:not_there => "steht noch nicht auf dem Einkaufszettel.",
+:the_list_reads => "Auf dem Einkaufszettel steht:",
+:no_list => "Die Eikaufsliste ist leer."
 )
 
 TEXTS_EN = Dict(
@@ -11,5 +13,7 @@ TEXTS_EN = Dict(
 :new_list => "I create a new shopping list.",
 :i_add => "I add to the shopping list: ",
 :already_there => "is already on the list.",
-:not_there => "is not on the list."
+:not_there => "is not on the list.",
+:the_list_reads => "The shopping list is:",
+:no_list => "the shopping list is empty!"
 )

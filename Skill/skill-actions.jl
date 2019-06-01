@@ -103,3 +103,30 @@ function checkItemAction(topic, payload)
     Snips.publishEndSession("")
     return true
 end
+
+
+"""
+    readAction(topic, payload)
+
+Read the shopping list.
+"""
+function readAction(topic, payload)
+
+    # log:
+    println("[ADoSnipsShoppinglist]: action readAction() started.")
+
+    slist = readSList()
+
+    if length(slist) == 0
+        Snips.publishEndSession(TEXTS[:no_list])
+    else
+        Snips.publishSay(TEXTS[:the_list_reads])
+        for item in slist
+            # println("Item: $(item[:item])")
+            Snips.publishSay("$(itemAsString(item))")
+        end
+        Snips.publishEndSession("")
+    end
+
+    return true
+end

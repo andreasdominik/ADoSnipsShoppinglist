@@ -1,0 +1,11 @@
+
+{
+  "sessionId": "session1234567890",
+  "siteId": "default",
+  "input": "lies mit den einkaufszettel vor",
+  "intent": {
+  "intentName": "andreasdominik:shoppinglistRead",
+  "confidenceScore": 0.987115
+  },
+  "slots": []
+}
