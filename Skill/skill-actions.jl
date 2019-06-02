@@ -150,7 +150,7 @@ function deleteListAction(topic, payload)
     else
         if Snips.askYesOrNo(TEXTS[:ask_delete])
             deleteCompleteList(SLIST)
-            Snips.publishEndSession(TEXTS[:abort_delete])
+            Snips.publishEndSession(TEXTS[:delete_list])
         else
             Snips.publishEndSession(TEXTS[:abort_delete])
         end
