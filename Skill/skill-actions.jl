@@ -130,3 +130,31 @@ function readAction(topic, payload)
 
     return true
 end
+
+
+
+"""
+    deleteListAction(topic, payload)
+
+Delete the complete shoppinglist.
+"""
+function deleteListAction(topic, payload)
+
+    # log:
+    println("[ADoSnipsShoppinglist]: action deleteListAction() started.")
+
+    slist = readSList()
+
+    if length(slist) == 0
+        Snips.publishEndSession(TEXTS[:no_list])
+    else
+        if Snips.askYesOrNo(TEXTS[:ask_delete])
+            deleteCompleteList(SLIST)
+            Snips.publishEndSession(TEXTS[:abort_delete])
+        else
+            Snips.publishEndSession(TEXTS[:abort_delete])
+        end
+    end
+
+    return true
+end

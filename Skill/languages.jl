@@ -5,7 +5,10 @@ TEXTS_DE = Dict(
 :already_there => "steht bereits auf dem Einkaufszettel.",
 :not_there => "steht noch nicht auf dem Einkaufszettel.",
 :the_list_reads => "Auf dem Einkaufszettel steht:",
-:no_list => "Die Eikaufsliste ist leer."
+:no_list => "Die Eikaufsliste ist leer.",
+:ask_delete => "Soll der Einkaufszettel wirklich gelöscht werden?",
+:delete_list => "Der Einkausfzettel wird gelöscht!",
+:abort_delete => "OK, der Einkaufszettel wir nicht gelöscht!"
 )
 
 TEXTS_EN = Dict(
@@ -15,5 +18,8 @@ TEXTS_EN = Dict(
 :already_there => "is already on the list.",
 :not_there => "is not on the list.",
 :the_list_reads => "The shopping list is:",
-:no_list => "the shopping list is empty!"
+:no_list => "the shopping list is empty!",
+:ask_delete => "Do you really want to delete the shopping list?",
+:delete_list => "The shopping list will be deleted completely!",
+:abort_delete => "OK, I will not delete the shopping list"
 )

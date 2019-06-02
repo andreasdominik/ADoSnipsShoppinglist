@@ -98,3 +98,16 @@ function getItemFromList(itemItem)
     end
     return fromList
 end
+
+
+
+function deleteCompleteList(fname)
+
+    # delete w/o careing...
+    #
+    try
+        rm(fname)
+    catch
+        println("error deleting shopping list")
+    end
+end
