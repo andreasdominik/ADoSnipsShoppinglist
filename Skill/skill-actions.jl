@@ -222,11 +222,35 @@ end
 
 function printListAction(topic, payload)
 
+
     printer = getConfig("printer")
+
+    slist = readSList()
+    if length(slist) == 0
+        Snips.publishEndSession(:no_list)
+        return false
+    end
+
+    # write temp file:
+    #
+    TEMP_FILE = "/tmp.slist.txt"
+    open(TMP_FILE, "w") do f
+        println(f, "Shopping list of: $(readableDate(now())))")
+        println(f, " ")
+
+        for item in slist
+            println(f, itemAsString(item))
+        end
+    end
+
 
     if printer == nothing
         Snips.publishEndSession(:no_printer)
     else
-        Snips.tryrun(`lp -d $printer $TMP_FILE`, errorMsg = :error_printer)
+        if printFile(TEMP_FILE, printer)
+            Snips.publishEndSession(:i_print)
+        else
+            Snips.publishEndSession("")
     end
+    return false
 end

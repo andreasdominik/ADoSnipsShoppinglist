@@ -130,3 +130,10 @@ function deleteItem(itemItem)
     saveSList(newList)
     return deleted
 end
+
+
+
+function printFile(fname, printer)
+
+    return Snips.tryrun(`lp -d $printer $fname`, errorMsg = :error_printer)
+end

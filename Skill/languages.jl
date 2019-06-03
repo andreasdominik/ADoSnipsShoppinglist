@@ -11,6 +11,8 @@ Snips.addText("de", :delete_list, "Der Einkausfzettel wird gelöscht!")
 Snips.addText("de", :abort_delete, "OK, der Einkaufszettel wir nicht gelöscht!")
 Snips.addText("de", :no_printer, "In der Config-Datei ist kein Drucker konfiguriert!")
 Snips.addText("de", :error_print, "Der Einkausfzettel kann leider nicht gedruckt werden")
+Snips.addText("de", :i_print, "Ich drucke den Einkausfszettel aus")
+
 
 Snips.addText("en", :dunno, "I did not catch what you want me to do!")
 Snips.addText("en", :new_list, "I create a new shopping list.")
@@ -25,3 +27,4 @@ Snips.addText("en", :delete_list, "The shopping list will be deleted completely!
 Snips.addText("en", :abort_delete, "OK, I will not delete the shopping list")
 Snips.addText("en", :no_printer, "There is no printer configured in the config-file!")
 Snips.addText("de", :error_print, "Error printing the shopping list")
+Snips.addText("de", :i_print, "I am printing the shopping list")
