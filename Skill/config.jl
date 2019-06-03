@@ -50,17 +50,11 @@ if LANG == "de"
     Snips.registerIntentAction("shoppinglistCheck", checkItemAction)
     Snips.registerIntentAction("shoppinglistRead", readAction)
     Snips.registerIntentAction("shoppinglistDeleteList", deleteListAction)
-    TEXTS = TEXTS_DE
-elseif LANG == "en"
-    Snips.registerIntentAction("shoppinglistAddItem", addItemAction)
-    Snips.registerIntentAction("shoppinglistCheck", checkItemAction)
-    Snips.registerIntentAction("shoppinglistRead", readAction)
-    Snips.registerIntentAction("shoppinglistDeleteList", deleteListAction)
-    TEXTS = TEXTS_EN
+    Snips.registerIntentAction("shoppinglistDeleteItem", deleteItemAction)
 else
     Snips.registerIntentAction("shoppinglistAddItem", addItemAction)
     Snips.registerIntentAction("shoppinglistCheck", checkItemAction)
     Snips.registerIntentAction("shoppinglistRead", readAction)
     Snips.registerIntentAction("shoppinglistDeleteList", deleteListAction)
-    TEXTS = TEXTS_EN
+    Snips.registerIntentAction("shoppinglistDeleteItem", deleteItemAction)
 end

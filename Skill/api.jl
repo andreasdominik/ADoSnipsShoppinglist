@@ -19,7 +19,6 @@ function isInList(item)
 
     slist = readSList()
     alreadyThere = false
-    # println(slist)
 
     for i in slist
         if uppercase(i[:item]) == uppercase(item[:item])
@@ -88,7 +87,7 @@ item is ONLY the name of the item! NOT the Dict
 function getItemFromList(itemItem)
 
     fromList = Dict()
-    slist = Snips.tryParseJSONfile(SLIST, quiet = true)
+    slist = readSList()
     if length(slist) > 0
         for i in slist
             if uppercase(i[:item]) == uppercase(itemItem)
@@ -110,4 +109,24 @@ function deleteCompleteList(fname)
     catch
         println("error deleting shopping list")
     end
+end
+
+
+function deleteItem(itemItem)
+
+    slist = readSList()
+    newList = Any[]
+    deleted = false   # becomes true, if an item is deleted...
+
+    for i in slist
+        if uppercase(i[:item]) != uppercase(itemItem)
+            push!(newList, deepcopy(i))
+        else
+            deleted = true
+        end
+    end
+
+    # deleteCompleteList(SLIST)
+    saveSList(newList)
+    return deleted
 end

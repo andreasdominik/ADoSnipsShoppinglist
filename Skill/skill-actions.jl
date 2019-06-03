@@ -28,15 +28,15 @@ function addItemAction(topic, payload)
     items = parseSlots(payload)
 
     if (items == nothing) || (length(items) == 0)     # no Item found!
-        Snips.publishEndSession(TEXTS[:dunno])
+        Snips.publishEndSession(Snips.text(:dunno))
         return true
     else
         for item in items
             # println("Item: $(item[:item])")
             if isInList(item)
-                Snips.publishSay("$(item[:item]) $(TEXTS[:already_there])")
+                Snips.publishSay("$(item[:item]) $(Snips.text(:already_there))")
             else
-                Snips.publishSay("$(TEXTS[:i_add]): $(itemAsString(item))")
+                Snips.publishSay("$(Snips.text(:i_add)): $(itemAsString(item))")
                 addItemToList(item)
             end
         end
@@ -94,9 +94,9 @@ function checkItemAction(topic, payload)
             # println("Item: $itemItem)")
             i = getItemFromList(itemItem)
             if length(i) > 0
-                Snips.publishSay("$(itemAsString(i)) $(TEXTS[:already_there])")
+                Snips.publishSay("$(itemAsString(i)) $(Snips.text(:already_there))")
             else
-                Snips.publishSay("$itemItem $(TEXTS[:not_there])")
+                Snips.publishSay("$itemItem $(Snips.text(:not_there))")
             end
         end
     end
@@ -118,9 +118,9 @@ function readAction(topic, payload)
     slist = readSList()
 
     if length(slist) == 0
-        Snips.publishEndSession(TEXTS[:no_list])
+        Snips.publishEndSession(Snips.text(:no_list))
     else
-        Snips.publishSay(TEXTS[:the_list_reads])
+        Snips.publishSay(Snips.text(:the_list_reads))
         for item in slist
             # println("Item: $(item[:item])")
             Snips.publishSay("$(itemAsString(item))")
@@ -146,15 +146,74 @@ function deleteListAction(topic, payload)
     slist = readSList()
 
     if length(slist) == 0
-        Snips.publishEndSession(TEXTS[:no_list])
+        Snips.publishEndSession(Snips.text(:no_list))
     else
-        if Snips.askYesOrNo(TEXTS[:ask_delete])
+        if Snips.askYesOrNo(Snips.text(:ask_delete))
             deleteCompleteList(SLIST)
-            Snips.publishEndSession(TEXTS[:delete_list])
+            Snips.publishEndSession(Snips.text(:delete_list))
         else
-            Snips.publishEndSession(TEXTS[:abort_delete])
+            Snips.publishEndSession(Snips.text(:abort_delete))
         end
     end
 
     return true
+end
+
+
+
+"""
+function deleteItemAction(topic, payload)
+
+    Delete an Item from the shopping list.
+"""
+function deleteItemAction(topic, payload)
+
+    # log:
+    println("[ADoSnipsShoppinglist]: action deleteItemAction() started.")
+
+    # get the item(s) to add from slot:
+    #
+    items = Snips.extractSlotValue(payload, SLOT_ITEM, multiple = true)
+
+    if (items == nothing) || (length(items) == 0)     # no Item found!
+        Snips.publishEndSession(Snips.text(:dunno))
+        return true
+    else
+        for item in items
+            if deleteItem(item)
+                Snips.publishSay("$item $(Snips.text(:del_item))")
+            else
+                Snips.publishSay("$item $(Snips.text(:not_there))")
+            end
+        end
+        Snips.publishEndSession("")
+    end
+
+    return true
+end
+
+
+function parseSlots(payload)
+
+    items = Dict[]
+
+    # iterate all slots and populate items step by step:
+    #
+    if haskey(payload, :slots)
+        item = Dict()
+        for s in payload[:slots]
+
+            if s[:slotName] == "Quantity"
+                item[:quantity] = s[:value][:value]
+            elseif s[:slotName] == "Unit"
+                item[:unit] = s[:value][:value]
+            elseif s[:slotName] == "Item"
+                item[:item] = s[:value][:value]
+
+                push!(items, deepcopy(item))
+                item = Dict()
+            end
+        end
+    end
+    return items
 end
