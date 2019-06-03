@@ -8,7 +8,7 @@ function addItemToList(item)
     slist = readSList()
 
     if length(slist) == 0
-        Snips.publishSay(TEXTS[:new_list])
+        Snips.publishSay(:new_list)
     end
     push!(slist, item)
     saveSList(slist)

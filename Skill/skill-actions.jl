@@ -28,15 +28,15 @@ function addItemAction(topic, payload)
     items = parseSlots(payload)
 
     if (items == nothing) || (length(items) == 0)     # no Item found!
-        Snips.publishEndSession(Snips.text(:dunno))
+        Snips.publishEndSession(:dunno)
         return true
     else
         for item in items
             # println("Item: $(item[:item])")
             if isInList(item)
-                Snips.publishSay("$(item[:item]) $(Snips.text(:already_there))")
+                Snips.publishSay("$(item[:item]) $(Snips.langText(:already_there))")
             else
-                Snips.publishSay("$(Snips.text(:i_add)): $(itemAsString(item))")
+                Snips.publishSay("$(Snips.langText(:i_add)): $(itemAsString(item))")
                 addItemToList(item)
             end
         end
@@ -87,16 +87,16 @@ function checkItemAction(topic, payload)
     items = Snips.extractSlotValue(payload, "Item", multiple = true)
 
     if (items == nothing) || (length(items) == 0)     # no Item found!
-        Snips.publishEndSession(TEXTS[:dunno])
+        Snips.publishEndSession(:dunno)
         return true
     else
         for itemItem in items
             # println("Item: $itemItem)")
             i = getItemFromList(itemItem)
             if length(i) > 0
-                Snips.publishSay("$(itemAsString(i)) $(Snips.text(:already_there))")
+                Snips.publishSay("$(itemAsString(i)) $(Snips.langText(:already_there))")
             else
-                Snips.publishSay("$itemItem $(Snips.text(:not_there))")
+                Snips.publishSay("$itemItem $(Snips.langText(:not_there))")
             end
         end
     end
@@ -118,9 +118,9 @@ function readAction(topic, payload)
     slist = readSList()
 
     if length(slist) == 0
-        Snips.publishEndSession(Snips.text(:no_list))
+        Snips.publishEndSession(:no_list)
     else
-        Snips.publishSay(Snips.text(:the_list_reads))
+        Snips.publishSay(:the_list_reads)
         for item in slist
             # println("Item: $(item[:item])")
             Snips.publishSay("$(itemAsString(item))")
@@ -146,13 +146,13 @@ function deleteListAction(topic, payload)
     slist = readSList()
 
     if length(slist) == 0
-        Snips.publishEndSession(Snips.text(:no_list))
+        Snips.publishEndSession(:no_list)
     else
-        if Snips.askYesOrNo(Snips.text(:ask_delete))
+        if Snips.askYesOrNo(:ask_delete)
             deleteCompleteList(SLIST)
-            Snips.publishEndSession(Snips.text(:delete_list))
+            Snips.publishEndSession(:delete_list)
         else
-            Snips.publishEndSession(Snips.text(:abort_delete))
+            Snips.publishEndSession(:abort_delete)
         end
     end
 
@@ -176,14 +176,14 @@ function deleteItemAction(topic, payload)
     items = Snips.extractSlotValue(payload, SLOT_ITEM, multiple = true)
 
     if (items == nothing) || (length(items) == 0)     # no Item found!
-        Snips.publishEndSession(Snips.text(:dunno))
+        Snips.publishEndSession(:dunno)
         return true
     else
         for item in items
             if deleteItem(item)
-                Snips.publishSay("$item $(Snips.text(:del_item))")
+                Snips.publishSay("$item $(Snips.langText(:del_item))")
             else
-                Snips.publishSay("$item $(Snips.text(:not_there))")
+                Snips.publishSay("$item $(Snips.langText(:not_there))")
             end
         end
         Snips.publishEndSession("")
@@ -216,4 +216,17 @@ function parseSlots(payload)
         end
     end
     return items
+end
+
+
+
+function printListAction(topic, payload)
+
+    printer = getConfig("printer")
+
+    if printer == nothing
+        Snips.publishEndSession(:no_printer)
+    else
+        Snips.tryrun(`lp -d $printer $TMP_FILE`, errorMsg = :error_printer)
+    end
 end
