@@ -251,6 +251,7 @@ function printListAction(topic, payload)
             Snips.publishEndSession(:i_print)
         else
             Snips.publishEndSession("")
+        end
     end
     return false
 end

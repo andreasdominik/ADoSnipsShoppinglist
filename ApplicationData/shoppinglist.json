@@ -1,0 +1,10 @@
+[
+  {
+    "item": "Wein"
+  },
+  {
+    "quantity": 2,
+    "item": "Bier",
+    "unit": "bottle"
+  }
+]
