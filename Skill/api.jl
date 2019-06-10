@@ -135,5 +135,6 @@ end
 
 function printFile(fname, printer)
 
-    return true #Snips.tryrun(`lp -d $printer $fname`, errorMsg = :error_printer)
+    Snips.tryrun(`lp -d $printer $fname`, errorMsg = :error_printer)
+    return true
 end

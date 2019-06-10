@@ -233,7 +233,7 @@ function printListAction(topic, payload)
 
     # write temp file:
     #
-    TEMP_FILE = "/tmp.slist.txt"
+    TEMP_FILE = "/tmp/slist.txt"
     open(TMP_FILE, "w") do f
         println(f, "Shopping list of: $(readableDate(now())))")
         println(f, " ")
