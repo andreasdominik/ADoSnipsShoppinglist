@@ -16,6 +16,8 @@ Snips.addText("de", :error_print, "Der Einkausfzettel kann leider nicht gedruckt
 Snips.addText("de", :i_print, "Ich drucke den Einkausfszettel aus")
 
 
+
+
 Snips.addText("en", :dunno, "I did not catch what you want me to do!")
 Snips.addText("en", :new_list, "I create a new shopping list.")
 Snips.addText("en", :i_add, "I add to the shopping list: ")
