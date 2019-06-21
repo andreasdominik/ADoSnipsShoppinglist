@@ -30,5 +30,5 @@ Snips.addText("en", :ask_delete, "Do you really want to delete the shopping list
 Snips.addText("en", :delete_list, "The shopping list will be deleted completely!")
 Snips.addText("en", :abort_delete, "OK, I will not delete the shopping list")
 Snips.addText("en", :no_printer, "There is no printer configured in the config-file!")
-Snips.addText("de", :error_print, "Error printing the shopping list")
-Snips.addText("de", :i_print, "I am printing the shopping list")
+Snips.addText("en", :error_print, "Error printing the shopping list")
+Snips.addText("en", :i_print, "I am printing the shopping list")
