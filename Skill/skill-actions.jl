@@ -162,9 +162,9 @@ end
 
 
 """
-function deleteItemAction(topic, payload)
+    deleteItemAction(topic, payload)
 
-    Delete an Item from the shopping list.
+Delete an Item from the shopping list.
 """
 function deleteItemAction(topic, payload)
 
@@ -220,10 +220,17 @@ end
 
 
 
+"""
+    printListAction(topic, payload)
+"""
 function printListAction(topic, payload)
 
 
-    printer = getConfig("printer")
+    if !Snips.isConfigValid(INI_PRINTER)
+        Snips.publishEndSession(:no_printer)
+        return true
+    end
+    printer = Snips.getConfig("printer")
 
     slist = readSList()
     if length(slist) == 0

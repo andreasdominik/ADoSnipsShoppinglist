@@ -56,6 +56,7 @@ function makePlural(s)
                    "Packung" => "Packungen",
                    "Dose" => "Dosen",
                    "Tafel" => "Tafeln",
+                   "Tube" => "Tuben",
                    "Tüte" => "Tüten"  )
     if haskey(plurals, s)
         return plurals[s]
