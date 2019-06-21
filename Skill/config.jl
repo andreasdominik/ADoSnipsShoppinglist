@@ -30,6 +30,7 @@ const SLOT_UNIT = "Unit"
 const INI_DIR = "directory"             # dir of shoppinglist file
 const INI_FILE = "shoppinglist"         # name of shoppinglist file
 const INI_TMP = "tmp_dir"
+const INI_PRINTER = "printer"
 const INI_PRINT_CMD = "print_cmd"
 
 const SLIST_DIR = "$(Snips.getAppDir())/$(Snips.getConfig(INI_DIR))"
@@ -51,10 +52,12 @@ if LANG == "de"
     Snips.registerIntentAction("shoppinglistRead", readAction)
     Snips.registerIntentAction("shoppinglistDeleteList", deleteListAction)
     Snips.registerIntentAction("shoppinglistDeleteItem", deleteItemAction)
+    Snips.registerIntentAction("shoppinglistPrint", printListAction)
 else
     Snips.registerIntentAction("shoppinglistAddItem", addItemAction)
     Snips.registerIntentAction("shoppinglistCheck", checkItemAction)
     Snips.registerIntentAction("shoppinglistRead", readAction)
     Snips.registerIntentAction("shoppinglistDeleteList", deleteListAction)
     Snips.registerIntentAction("shoppinglistDeleteItem", deleteItemAction)
+    Snips.registerIntentAction("shoppinglistPrint", printListAction)
 end

@@ -230,7 +230,7 @@ function printListAction(topic, payload)
         Snips.publishEndSession(:no_printer)
         return true
     end
-    printer = Snips.getConfig("printer")
+    printer = Snips.getConfig(INI_PRINTER)
 
     slist = readSList()
     if length(slist) == 0
@@ -240,9 +240,9 @@ function printListAction(topic, payload)
 
     # write temp file:
     #
-    TEMP_FILE = "/tmp/slist.txt"
+    TMP_FILE = "/tmp/slist.txt"
     open(TMP_FILE, "w") do f
-        println(f, "Shopping list of: $(readableDate(now())))")
+        println(f, "Shopping list of: $(Snips.readableDateTime(Dates.now.())))")
         println(f, " ")
 
         for item in slist
@@ -254,7 +254,7 @@ function printListAction(topic, payload)
     if printer == nothing
         Snips.publishEndSession(:no_printer)
     else
-        if printFile(TEMP_FILE, printer)
+        if printFile(TMP_FILE, printer)
             Snips.publishEndSession(:i_print)
         else
             Snips.publishEndSession("")
