@@ -21,7 +21,7 @@ function addItemAction(topic, payload)
 function addItemAction(topic, payload)
 
     # log:
-    println("[ADoSnipsShoppinglist]: action addItemAction() started.")
+    Snips.printLog("action addItemAction() started.")
 
     # get the item(s) to add from slot:
     #
@@ -82,7 +82,7 @@ Check, if an item is already on the list, and read the full entry.
 function checkItemAction(topic, payload)
 
     # log:
-    println("[ADoSnipsShoppinglist]: action checkItemAction() started.")
+    Snips.printLog("action checkItemAction() started.")
 
     items = Snips.extractSlotValue(payload, "Item", multiple = true)
 
@@ -113,7 +113,7 @@ Read the shopping list.
 function readAction(topic, payload)
 
     # log:
-    println("[ADoSnipsShoppinglist]: action readAction() started.")
+    Snips.printLog("action readAction() started.")
 
     slist = readSList()
 
@@ -141,7 +141,7 @@ Delete the complete shoppinglist.
 function deleteListAction(topic, payload)
 
     # log:
-    println("[ADoSnipsShoppinglist]: action deleteListAction() started.")
+    Snips.printLog("action deleteListAction() started.")
 
     slist = readSList()
 
@@ -169,7 +169,7 @@ Delete an Item from the shopping list.
 function deleteItemAction(topic, payload)
 
     # log:
-    println("[ADoSnipsShoppinglist]: action deleteItemAction() started.")
+    Snips.printLog("action deleteItemAction() started.")
 
     # get the item(s) to add from slot:
     #

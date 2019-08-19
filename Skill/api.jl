@@ -108,7 +108,7 @@ function deleteCompleteList(fname)
     try
         rm(fname)
     catch
-        println("error deleting shopping list")
+        Snips.printLog("error deleting shopping list")
     end
 end
 
