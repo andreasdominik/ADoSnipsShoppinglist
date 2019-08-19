@@ -13,13 +13,16 @@ const MODULE_DIR = @__DIR__
 const APP_DIR = replace(MODULE_DIR, r"/[^/]*/?$"=>"")
 const SKILLS_DIR = replace(APP_DIR, r"/[^/]*/?$"=>"")
 const FRAMEWORK_DIR = "$SKILLS_DIR/ADoSnipsQnD"
+const APP_NAME = split(APP_DIR, "/")[end]
+
 include("$FRAMEWORK_DIR/SnipsHermesQnD/src/SnipsHermesQnD.jl")
 import .SnipsHermesQnD
 Snips = SnipsHermesQnD
 
-Snips.setAppDir("$APP_DIR")
 Snips.readConfig("$APP_DIR")
 Snips.setLanguage(Snips.getConfig(:language))
+Snips.setAppDir(APP_DIR)
+Snips.setAppName(APP_NAME)
 
 
 include("api.jl")
