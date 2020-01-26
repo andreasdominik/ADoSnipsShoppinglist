@@ -66,3 +66,15 @@ addNoUnit = "partial: <<Bitte|>> <<schreibe|setze>> <<bitte|>> <<Item>> <<auf de
 addWithUnit = "partial: <<Bitte|>> <<schreibe|setze>> <<bitte|>> <<Quantity>> <<Unit>> <<Item>> <<auf den|auf die>> <<Einkaufszettel|Einkaufsliste>>"
 addAlt = "partial: <<wir|ich>> brauche? <<noch|>> <<Item>>"
 addAltUnit = "partial: <<wir|ich>> brauche? <<noch|>> <<Quantity>> <<Unit>> <<Item>>"
+
+[shoppingListRead]
+readShoppingList1 = "orderd: lies mir <<Einkaufszettel|Einkaufsliste>> vor"
+readShoppingList2 = "partial: was steht auf <<dem|der>> <<Einkaufszettel|Einkaufsliste>>"
+
+[shoppinglistDeleteList]
+delListAll = "exact: <<bitte|>> lösche <<bitte|>> <<den|die>> <<Einkaufszettel|Einkaufsliste>>"
+delListAll2 = "exact: <<bitte|>> lösche <<bitte|>> alles <<vom|von der>> <<Einkaufszettel|Einkaufsliste>>"
+
+[shoppingListCheck]
+listCheck = "partial: <<ist|steht>> <<Item>> <<schon|bereits|>> auf <<der|dem>> <<Einkaufszettel|Einkaufsliste>>"
+liste2Check = "partial: <<ist|steht>> auf <<der|dem>> <<Einkaufszettel|Einkaufsliste>> <<schon|bereits|>> <<Item>>"
