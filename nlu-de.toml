@@ -1,0 +1,68 @@
+# Intent definition for Calendar skill
+#
+#  (c) A. Dominik, 2020
+#
+skill = "ADoSnipsShoppinglistDE"
+developer = "andreasdominik"
+
+
+[inventory]
+intents = ["shoppinglistPrint", "shoppinglistDeleteItem",
+           "shoppinglistAddItem", "shoppinglistRead",
+           "shoppinglistDeleteList", "shoppinglistCheck"]
+slots = ["Item", "Unit", "Quantity"]
+
+
+# define slots:
+# Types: "Any", "ListOfValues", "Time", "Duration", "Currency", "Number", "Ordinal"
+#
+[Item]
+slot_type = "Any"
+
+        [Item.synonyms]
+        "Nutella" = ["Nutella", "Nuss Nougat Creme"]
+
+[Unit]
+slot_type = "ListOfValues"
+
+        [Unit.synonyms]
+        "Tube" = ["Tube", "Tuben"]
+        "klein" = ["klein", "kleine", "kleiner", "kleinen",
+                   "kurz", "kurze", "kurzer", "kurzen"]
+        "groß" = ["groß", "große", "großer", "großen"]
+        "Becher" = "Becher"
+        "Tüte" = ["Tüte", "Tüten"]
+        "Tafel" = ["Tafel", "Tafeln"]
+        "Dose" = ["Dose", "Dosen", "Büchse", "Büchsen"]
+        "Glas" = ["Glas", "Gläser"]
+        "Schachtel" = ["Schachtel", "Schachteln", "Box", "Boxen"]
+        "Packung" = ["Packung", "Packungen", "Pack", "Päckchen"]
+        "Stück" = ["Stück", "Stücke"]
+        "Flasche" = ["Flasche", "Flaschen"]
+        "Gramm" = ["Gramm", "g"]
+        "Kilogramm" = ["Kilogramm", "kg", "Kilo", "Kilos"]
+        "Kasten" = ["Kasten", "Kästen", "Tragerl", "Kiste", "Kisten", "Ständer"]
+        "Liter" = ["Liter", "l"]
+
+[Quantity]
+slot_type = "Number"
+
+
+# define phrases for intent recognition:
+# "exact", "regex", "partial", "ordered"
+#
+[shoppinglistPrint]
+printShoppingList1 = "partial: <<Bitte|>> drucke <<mir|>> <<die|den>> <<Einkaufszettel|Einkaufsliste>>"
+printShoppingList2 = "partial: <<Bitte|>> mach? einen Ausdruck <<der|vom>> <<Einkaufszettel|Einkaufsliste>>"
+
+[shoppinglistDeleteItem]
+deleteShoppingList1 = "partial: <<Bitte|>> <<>> <<Item>> <<vom|von der>> <<Einkaufszettel|Einkaufsliste>> <<streichen|entfernen|löschen>>"
+deleteShoppingList2 = "partial: <<Bitte|>> <<streiche|entferne|lösche>> <<>> <<Item>> <<vom|von der>> <<Einkaufszettel|Einkaufsliste>>"
+deleteShoppingList3 = "partial: <<Bitte|>> <<streiche|entferne|lösche>> <<>> <<Item>> <<vom|von der>> <<Einkaufszettel|Einkaufsliste>>"
+deleteShoppingList4 = "partial: Du kannst <<>> <<Item>> <<vom|von der>> <<Einkaufszettel|Einkaufsliste>> <<streichen|entfernen|löschen>>"
+
+[shoppinglistAddItem]
+addNoUnit = "partial: <<Bitte|>> <<schreibe|setze>> <<bitte|>> <<Item>> <<auf den|auf die>> <<Einkaufszettel|Einkaufsliste>>"
+addWithUnit = "partial: <<Bitte|>> <<schreibe|setze>> <<bitte|>> <<Quantity>> <<Unit>> <<Item>> <<auf den|auf die>> <<Einkaufszettel|Einkaufsliste>>"
+addAlt = "partial: <<wir|ich>> brauche? <<noch|>> <<Item>>"
+addAltUnit = "partial: <<wir|ich>> brauche? <<noch|>> <<Quantity>> <<Unit>> <<Item>>"
