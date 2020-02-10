@@ -10,7 +10,7 @@ developer = "andreasdominik"
 intents = ["shoppinglistPrint", "shoppinglistDeleteItem",
            "shoppinglistAddItem", "shoppinglistRead",
            "shoppinglistDeleteList", "shoppinglistCheck"]
-slots = ["Item", "Unit", "Quantity"]
+slots = ["Item", "Item2", "Item3", "Unit", "Unit2", "Unit3", "Quantity", "Quantity2", "Quantity3"]
 
 
 # define slots:
@@ -18,34 +18,96 @@ slots = ["Item", "Unit", "Quantity"]
 #
 [Item]
 slot_type = "Any"
+allow_empty = false
 
-        [Item.synonyms]
-        "Nutella" = ["Nutella", "Nuss Nougat Creme"]
+[Item2]
+slot_type = "Any"
+allow_empty = false
+
+[Item3]
+slot_type = "Any"
+allow_empty = false
 
 [Unit]
 slot_type = "ListOfValues"
+allow_empty = false
 
         [Unit.synonyms]
-        "Tube" = ["Tube", "Tuben"]
-        "klein" = ["klein", "kleine", "kleiner", "kleinen",
-                   "kurz", "kurze", "kurzer", "kurzen"]
-        "groß" = ["groß", "große", "großer", "großen"]
+        "Tube" = ["Tuben", "Tube"]
+        "klein" = ["kleiner", "kleine", "kleinen", "klein",
+                   "kurzer", "kurzen", "kurze", "kurz"]
+        "groß" = ["großer", "großen", "große", "groß"]
         "Becher" = "Becher"
-        "Tüte" = ["Tüte", "Tüten"]
-        "Tafel" = ["Tafel", "Tafeln"]
-        "Dose" = ["Dose", "Dosen", "Büchse", "Büchsen"]
+        "Tüte" = ["Tüten", "Tüte"]
+        "Tafel" = ["Tafeln", "Tafel"]
+        "Dose" = ["Dosen", "Dose", "Büchsen", "Büchse"]
         "Glas" = ["Glas", "Gläser"]
-        "Schachtel" = ["Schachtel", "Schachteln", "Box", "Boxen"]
-        "Packung" = ["Packung", "Packungen", "Pack", "Päckchen"]
-        "Stück" = ["Stück", "Stücke"]
-        "Flasche" = ["Flasche", "Flaschen"]
+        "Schachtel" = ["Schachteln", "Schachtel", "Boxen", "Box"]
+        "Packung" = ["Packungen", "Packung", "Pack", "Päckchen"]
+        "Stück" = ["Stücke", "Stück"]
+        "Flasche" = ["Flaschen", "Flasche"]
         "Gramm" = ["Gramm", "g"]
-        "Kilogramm" = ["Kilogramm", "kg", "Kilo", "Kilos"]
-        "Kasten" = ["Kasten", "Kästen", "Tragerl", "Kiste", "Kisten", "Ständer"]
-        "Liter" = ["Liter", "l"]
+        "Kilogramm" = ["Kilogramm", "kg", "Kilos", "Kilo"]
+        "Kasten" = ["Kasten", "Kästen", "Tragerl", "Kisten", "Kiste", "Ständer"]
+        "Liter" = ["Liter", "l "]
+
+[Unit2]
+slot_type = "ListOfValues"
+allow_empty = false
+
+        [Unit2.synonyms]
+        "Tube" = ["Tuben", "Tube"]
+        "klein" = ["kleiner", "kleine", "kleinen", "klein",
+                   "kurzer", "kurzen", "kurze", "kurz"]
+        "groß" = ["großer", "großen", "große", "groß"]
+        "Becher" = "Becher"
+        "Tüte" = ["Tüten", "Tüte"]
+        "Tafel" = ["Tafeln", "Tafel"]
+        "Dose" = ["Dosen", "Dose", "Büchsen", "Büchse"]
+        "Glas" = ["Glas", "Gläser"]
+        "Schachtel" = ["Schachteln", "Schachtel", "Boxen", "Box"]
+        "Packung" = ["Packungen", "Packung", "Pack", "Päckchen"]
+        "Stück" = ["Stücke", "Stück"]
+        "Flasche" = ["Flaschen", "Flasche"]
+        "Gramm" = ["Gramm", "g"]
+        "Kilogramm" = ["Kilogramm", "kg", "Kilos", "Kilo"]
+        "Kasten" = ["Kasten", "Kästen", "Tragerl", "Kisten", "Kiste", "Ständer"]
+        "Liter" = ["Liter", "l "]
+
+[Unit3]
+slot_type = "ListOfValues"
+allow_empty = false
+
+        [Unit3.synonyms]
+        "Tube" = ["Tuben", "Tube"]
+        "klein" = ["kleiner", "kleine", "kleinen", "klein",
+                   "kurzer", "kurzen", "kurze", "kurz"]
+        "groß" = ["großer", "großen", "große", "groß"]
+        "Becher" = "Becher"
+        "Tüte" = ["Tüten", "Tüte"]
+        "Tafel" = ["Tafeln", "Tafel"]
+        "Dose" = ["Dosen", "Dose", "Büchsen", "Büchse"]
+        "Glas" = ["Glas", "Gläser"]
+        "Schachtel" = ["Schachteln", "Schachtel", "Boxen", "Box"]
+        "Packung" = ["Packungen", "Packung", "Pack", "Päckchen"]
+        "Stück" = ["Stücke", "Stück"]
+        "Flasche" = ["Flaschen", "Flasche"]
+        "Gramm" = ["Gramm", "g"]
+        "Kilogramm" = ["Kilogramm", "kg", "Kilos", "Kilo"]
+        "Kasten" = ["Kasten", "Kästen", "Tragerl", "Kisten", "Kiste", "Ständer"]
+        "Liter" = ["Liter", "l "]
 
 [Quantity]
 slot_type = "Number"
+allow_empty = false
+
+[Quantity2]
+slot_type = "Number"
+allow_empty = false
+
+[Quantity3]
+slot_type = "Number"
+allow_empty = false
 
 
 # define phrases for intent recognition:
@@ -62,19 +124,27 @@ deleteShoppingList3 = "partial: <<Bitte|>> <<streiche|entferne|lösche>> <<>> <<
 deleteShoppingList4 = "partial: Du kannst <<>> <<Item>> <<vom|von der>> <<Einkaufszettel|Einkaufsliste>> <<streichen|entfernen|löschen>>"
 
 [shoppinglistAddItem]
-addNoUnit = "partial: <<Bitte|>> <<schreibe|setze>> <<bitte|>> <<Item>> <<auf den|auf die>> <<Einkaufszettel|Einkaufsliste>>"
-addWithUnit = "partial: <<Bitte|>> <<schreibe|setze>> <<bitte|>> <<Quantity>> <<Unit>> <<Item>> <<auf den|auf die>> <<Einkaufszettel|Einkaufsliste>>"
-addAlt = "partial: <<wir|ich>> brauche? <<noch|>> <<Item>>"
-addAltUnit = "partial: <<wir|ich>> brauche? <<noch|>> <<Quantity>> <<Unit>> <<Item>>"
+add_a_3 = "partial: <<Bitte|>> <<schreibe|setze>> <<bitte|>> <<Quantity>> <<Unit>> <<Item>> und <<Quantity2>> <<Unit2>> <Item2>> und <<Quantity3>> <<Unit3>> <<Item3>> <<auf den|auf die>> <<Einkaufszettel|Einkaufsliste>>"
+add_b_2 = "partial: <<Bitte|>> <<schreibe|setze>> <<bitte|>> <<Quantity>> <<Unit>> <<Item>> und <<Quantity2>> <<Unit2>> <Item2>> <<auf den|auf die>> <<Einkaufszettel|Einkaufsliste>>"
+add_c_1 = "partial: <<Bitte|>> <<schreibe|setze>> <<bitte|>> <<Quantity>> <<Unit>> <<Item>> <<auf den|auf die>> <<Einkaufszettel|Einkaufsliste>>"
 
-[shoppingListRead]
-readShoppingList1 = "orderd: lies mir <<Einkaufszettel|Einkaufsliste>> vor"
+add_d_3 = "partial: <<Bitte|>> <<schreibe|setze>> <<bitte|>> <<Item>> und <<Item2>> und <<Item3>> <<auf den|auf die>> <<Einkaufszettel|Einkaufsliste>>"
+add_e_2 = "partial: <<Bitte|>> <<schreibe|setze>> <<bitte|>> <<Item>> und <<Item2>> <<auf den|auf die>> <<Einkaufszettel|Einkaufsliste>>"
+add_f_1 = "partial: <<Bitte|>> <<schreibe|setze>> <<bitte|>> <<Item>> <<auf den|auf die>> <<Einkaufszettel|Einkaufsliste>>"
+
+add_k_3_Alt = "partial: <<wir|ich>> brauche? <<noch|>> <<Item>> und <<item2>> und <<item3>>"
+add_l_2_Alt = "partial: <<wir|ich>> brauche? <<noch|>> <<Item>> und <<item2>>"
+add_m_1_Alt = "partial: <<wir|ich>> brauche? <<noch|>> <<Item>>"
+add_n_AltUnit = "partial: <<wir|ich>> brauche? <<noch|>> <<Quantity>> <<Unit>> <<Item>>"
+
+[shoppinglistRead]
+readShoppingList1 = "ordered: lies mir <<Einkaufszettel|Einkaufsliste>> vor"
 readShoppingList2 = "partial: was steht auf <<dem|der>> <<Einkaufszettel|Einkaufsliste>>"
 
 [shoppinglistDeleteList]
 delListAll = "exact: <<bitte|>> lösche <<bitte|>> <<den|die>> <<Einkaufszettel|Einkaufsliste>>"
 delListAll2 = "exact: <<bitte|>> lösche <<bitte|>> alles <<vom|von der>> <<Einkaufszettel|Einkaufsliste>>"
 
-[shoppingListCheck]
+[shoppinglistCheck]
 listCheck = "partial: <<ist|steht>> <<Item>> <<schon|bereits|>> auf <<der|dem>> <<Einkaufszettel|Einkaufsliste>>"
 liste2Check = "partial: <<ist|steht>> auf <<der|dem>> <<Einkaufszettel|Einkaufsliste>> <<schon|bereits|>> <<Item>>"
