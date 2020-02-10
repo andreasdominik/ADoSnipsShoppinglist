@@ -47,31 +47,6 @@ function addItemAction(topic, payload)
 end
 
 
-function parseSlots(payload)
-
-    items = Dict[]
-
-    # iterate all slots and populate items step by step:
-    #
-    if haskey(payload, :slots)
-        item = Dict()
-        for s in payload[:slots]
-
-            if s[:slotName] == "Quantity"
-                item[:quantity] = s[:value][:value]
-            elseif s[:slotName] == "Unit"
-                item[:unit] = s[:value][:value]
-            elseif s[:slotName] == "Item"
-                item[:item] = s[:value][:value]
-
-                push!(items, deepcopy(item))
-                item = Dict()
-            end
-        end
-    end
-    return items
-end
-
 
 
 """
@@ -196,23 +171,48 @@ end
 function parseSlots(payload)
 
     items = Dict[]
+    item1 = Dict()
+    item2 = Dict()
+    item3 = Dict()
+
 
     # iterate all slots and populate items step by step:
     #
     if haskey(payload, :slots)
-        item = Dict()
         for s in payload[:slots]
-
             if s[:slotName] == "Quantity"
-                item[:quantity] = s[:value][:value]
-            elseif s[:slotName] == "Unit"
-                item[:unit] = s[:value][:value]
-            elseif s[:slotName] == "Item"
-                item[:item] = s[:value][:value]
+                item1[:quantity] = s[:value][:value]
+            elseif s[:slotName] == "Quantity2"
+                item2[:quantity] = s[:value][:value]
+            elseif s[:slotName] == "Quantity3"
+                item3[:quantity] = s[:value][:value]
 
-                push!(items, deepcopy(item))
-                item = Dict()
+            elseif s[:slotName] == "Unit"
+                item1[:unit] = s[:value][:value]
+            elseif s[:slotName] == "Unit2"
+                item2[:unit] = s[:value][:value]
+            elseif s[:slotName] == "Unit3"
+                item3[:unit] = s[:value][:value]
+
+            elseif s[:slotName] == "Item"
+                item1[:item] = s[:value][:value]
+            elseif s[:slotName] == "Item2"
+                item2[:item] = s[:value][:value]
+            elseif s[:slotName] == "Item3"
+                item3[:item] = s[:value][:value]
             end
+        end
+
+        # make list of items:
+        #
+        if haskey(item1, :item)
+            push!(items, deepcopy(item1))
+        end
+        if haskey(item2, :item)
+            push!(items, deepcopy(item2))
+        end
+        if haskey(item3, :item)
+            push!(items, deepcopy(item3))
         end
     end
     return items
